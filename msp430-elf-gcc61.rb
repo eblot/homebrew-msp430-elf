@@ -70,13 +70,17 @@ class Msp430ElfGcc61 <Formula
                   "--disable-debug"
       system "make"
       system "make -j1 -k install"
+      copy coredir+"/libgloss/libnosys/nosys.specs", "#{prefix}/msp430-elf/lib"
     end
+
+    ln_s "#{Formula.factory(msp430_bu).prefix}/msp430-elf/bin",
+                   "#{prefix}/msp430-elf/bin"
 
     resource('mspdefs').stage do
       mkdir_p "#{prefix}/msp430-elf/include"
       mkdir_p "#{prefix}/msp430-elf/lib"
-      copy(Dir.glob(Dir.pwd+'/include/*.h'), "#{prefix}/msp430-elf/include")
-      copy(Dir.glob(Dir.pwd+'/include/*.ld'), "#{prefix}/msp430-elf/lib")
+      copy Dir.glob(Dir.pwd+'/include/*.h'), "#{prefix}/msp430-elf/include"
+      copy Dir.glob(Dir.pwd+'/include/*.ld'), "#{prefix}/msp430-elf/lib"
     end
 
   end
