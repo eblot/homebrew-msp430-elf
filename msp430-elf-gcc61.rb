@@ -19,6 +19,12 @@ class Msp430ElfGcc61 <Formula
     sha256 '545b3d235e350d2c61491df8b9f775b1b972f191380db8f52ec0b1c829c52706'
   end
 
+  resource 'mspdefs' do
+    url    'http://software-dl.ti.com/msp430/msp430_public_sw/mcu/msp430/MSPGCC/latest/exports/msp430-gcc-support-files.zip'
+    # 'lastest' is unfortunately a very bad reference, as it could be updated at any time...
+    sha256 '84c8571cc6eab96df04685d5bd5f7884a0617435826c79d4dd50b5723b1353d9'
+  end
+
   def install
 
     msp430_bu = 'msp430-elf-binutils226'
@@ -64,6 +70,13 @@ class Msp430ElfGcc61 <Formula
                   "--disable-debug"
       system "make"
       system "make -j1 -k install"
+    end
+
+    resource('mspdefs').stage do
+      mkdir_p "#{prefix}/msp430-elf/include"
+      mkdir_p "#{prefix}/msp430-elf/lib"
+      copy(Dir.glob(Dir.pwd+'/include/*.h'), "#{prefix}/msp430-elf/include")
+      copy(Dir.glob(Dir.pwd+'/include/*.ld'), "#{prefix}/msp430-elf/lib")
     end
 
   end
