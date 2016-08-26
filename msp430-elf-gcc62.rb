@@ -11,7 +11,7 @@ class Msp430ElfGcc62 <Formula
   depends_on 'gmp'
   depends_on 'libmpc'
   depends_on 'mpfr'
-  depends_on 'msp430-elf-binutils226'
+  depends_on 'msp430-elf-binutils227'
   depends_on 'gcc6' => :build
 
   resource 'newlib24' do
@@ -27,7 +27,7 @@ class Msp430ElfGcc62 <Formula
 
   def install
 
-    msp430_bu = 'msp430-elf-binutils226'
+    msp430_bu = 'msp430-elf-binutils227'
 
     coredir = Dir.pwd
 
