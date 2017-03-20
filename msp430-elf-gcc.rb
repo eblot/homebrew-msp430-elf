@@ -1,18 +1,19 @@
 require 'formula'
 
-class Msp430ElfGcc63 <Formula
+class Msp430ElfGcc <Formula
   homepage 'https://gcc.gnu.org'
   url      'http://ftpmirror.gnu.org/gcc/gcc-6.3.0/gcc-6.3.0.tar.bz2'
   mirror   'https://ftp.gnu.org/gnu/gcc/gcc-6.3.0/gcc-6.3.0.tar.bz2'
   sha256   'f06ae7f3f790fbf0f018f6d40e844451e6bc3b7bc96e128e63b09825c1f8b29f'
 
-  keg_only 'Enable installation of several GCC versions'
+  keg_only :versioned_formula
 
   depends_on 'gmp'
   depends_on 'libmpc'
   depends_on 'mpfr'
-  depends_on 'msp430-elf-binutils227'
+  depends_on 'msp430-elf-binutils'
   depends_on 'gcc6' => :build
+  depends_on 'texinfo' => :build
 
   resource 'newlib25' do
     url    'ftp://sourceware.org/pub/newlib/newlib-2.5.0.tar.gz'
@@ -20,13 +21,13 @@ class Msp430ElfGcc63 <Formula
   end
 
   resource 'mspdefs' do
-    url    'http://software-dl.ti.com/msp430/msp430_public_sw/mcu/msp430/MSPGCC/latest/exports/msp430-gcc-support-files-1.194.zip'
-    sha256 'b3c10470dbc0672b8deca2b60a376304d14a02837ef09b1b06810e89a6aa2d34'
+    url    'http://software-dl.ti.com/msp430/msp430_public_sw/mcu/msp430/MSPGCC/latest/exports/msp430-gcc-support-files-1.198.zip'
+    sha256 '8d411d61eebf794d4f786f77c901223c931146ba2dfe2ae0798433c7ddb15137'
   end
 
   def install
 
-    msp430_bu = 'msp430-elf-binutils227'
+    msp430_bu = 'msp430-elf-binutils'
 
     coredir = Dir.pwd
 
@@ -36,8 +37,8 @@ class Msp430ElfGcc63 <Formula
     end
 
     # It would be better to install resources files once the compiler is built
-    # however the lack of reliability of TI archive download often leads to 
-    # sucessfully build a proper compiler but fails to complete the recipe 
+    # however the lack of reliability of TI archive download often leads to
+    # sucessfully build a proper compiler but fails to complete the recipe
     # because of a single missing resource. So try to retrieve the resource
     # first, build after...
     resource('mspdefs').stage do

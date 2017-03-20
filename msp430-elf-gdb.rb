@@ -1,9 +1,9 @@
 require 'formula'
 
 class Msp430ElfGdb <Formula
-  url 'http://ftp.gnu.org/gnu/gdb/gdb-7.11.tar.xz'
+  url 'http://ftp.gnu.org/gnu/gdb/gdb-7.12.1.tar.xz'
   homepage 'https://www.gnu.org/software/gdb/'
-  sha256 '7a434116cb630d77bb40776e8f5d3937bed11dea56bafebb4d2bc5dd389fe5c1'
+  sha256 '4607680b973d3ec92c30ad029f1b7dbde3876869e6b3a117d8a7e90081113186'
 
   depends_on 'gmp'
   depends_on 'mpfr'
@@ -11,9 +11,9 @@ class Msp430ElfGdb <Formula
 
   def install
     system "./configure", "--prefix=#{prefix}", "--target=msp430-elf",
-                "--with-gmp=#{Formula.factory('gmp').prefix}",
-                "--with-mpfr=#{Formula.factory('mpfr').prefix}",
-                "--with-mpc=#{Formula.factory('libmpc').prefix}",
+                "--with-gmp=#{Formulary.factory('gmp').prefix}",
+                "--with-mpfr=#{Formulary.factory('mpfr').prefix}",
+                "--with-mpc=#{Formulary.factory('libmpc').prefix}",
                 "--without-cloog","--disable-werror"
     system "make"
     system "make install"
