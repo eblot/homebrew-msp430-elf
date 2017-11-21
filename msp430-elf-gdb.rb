@@ -1,9 +1,9 @@
 require 'formula'
 
 class Msp430ElfGdb <Formula
-  url 'http://ftp.gnu.org/gnu/gdb/gdb-7.12.1.tar.xz'
-  homepage 'https://www.gnu.org/software/gdb/'
-  sha256 '4607680b973d3ec92c30ad029f1b7dbde3876869e6b3a117d8a7e90081113186'
+  url 'http://ftp.gnu.org/gnu/gdb/gdb-8.0.1.tar.xz'
+  homepage 'http://www.gnu.org/software/gdb/'
+  sha256 '3dbd5f93e36ba2815ad0efab030dcd0c7b211d7b353a40a53f4c02d7d56295e3'
 
   depends_on 'gmp'
   depends_on 'mpfr'
