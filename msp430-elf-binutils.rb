@@ -1,9 +1,9 @@
 require 'formula'
 
 class Msp430ElfBinutils <Formula
-  url 'http://ftp.gnu.org/gnu/binutils/binutils-2.29.1.tar.bz2'
+  url 'http://ftp.gnu.org/gnu/binutils/binutils-2.32.tar.xz'
   homepage 'http://www.gnu.org/software/binutils/'
-  sha256 '1509dff41369fb70aed23682351b663b56db894034773e6dbf7d5d6071fc55cc'
+  sha256 '0ab6c55dd86a92ed561972ba15b9b70a8b9f75557f896446c82e8b36e473ee04'
 
   depends_on 'gmp'
   depends_on 'mpfr'
